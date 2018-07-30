@@ -24,6 +24,12 @@ $ apt-get update && apt-get install -y wget --no-install-recommends \
 
 (libgconf may also be required)
 
+Other things to consider;
+
+* installing node binaries directly from nodejs.org
+* adding www-data user to audio/video groups
+* chowning the hell out of the web directory
+
 then install node dependencies with
 
 ```
