@@ -44,11 +44,13 @@ $ cd tool && npm install
 
 ## PHP Api
 
+### Printing to a file
+
 ```PHP
-GatherPDF\Tool::print('http://www.google.com', 'google.pdf')
+PDFBundle\Tool::printToFile('http://www.google.com', 'google.pdf');
 ```
 
-this function returns an object of schema;
+return schema;
 
 ```
 (object) [
@@ -56,6 +58,56 @@ this function returns an object of schema;
     'error' => (string) | (none)
 ]
 ```
+
+### Printing as data
+
+(requires `/tmp` to be writable)
+
+```PHP
+PDFBundle\Tool::printToData('http://www.google.com');
+```
+
+return schema;
+
+```
+(object) [
+    'success' => (boolean)
+    'data' => (string) | (none)
+    'error' => (string) | (none)
+]
+```
+
+### Printing as dataURI
+
+(requires `/tmp` to be writable)
+
+```PHP
+PDFBundle\Tool::printToDataURI('http://www.google.com');
+```
+
+return schema;
+
+```
+(object) [
+    'success' => (boolean)
+    'dataURI' => (string) | (none)
+    'error' => (string) | (none)
+]
+```
+
+### Printing and providing as a download
+
+(requires `/tmp` to be writable)
+
+```PHP
+PDFBundle\Tool::printAsDownload('http://www.google.com', 'download.pdf');
+```
+
+If successful, this function sets the required headers and then calls `exit;`. Otherwise you will receive an object with the same format as printing to a file.
+
+## Security
+
+Since the printer needs a public URL to print, a secret key can be used to ensure that this URL is only ever seen by the application backend and not the user.
 
 ## TODO
 
